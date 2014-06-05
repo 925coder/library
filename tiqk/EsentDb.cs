@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace coder925.tiqk
 {
+
   public class EsentDb
   {
-
+    
   }
 }

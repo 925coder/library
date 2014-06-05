@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Db.cs" />
     <Compile Include="EsentDb.cs" />
+    <Compile Include="IKeyValueStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

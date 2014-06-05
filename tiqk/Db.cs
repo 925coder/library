@@ -9,6 +9,8 @@ namespace coder925.tiqk
 
   public interface IDb
   {
+    IKeyValueStore StorageEngine { get; set; }
+
     void Insert<T>(T obj);
     void Update<T>(Func<T> condition, T obj);
     void Delete<T>(Func<T> condition);
@@ -17,9 +19,15 @@ namespace coder925.tiqk
 
   class Db : IDb
   {
+    IKeyValueStore storageEngine;
+    public Db(IKeyValueStore storageEngine)
+    {
+      this.storageEngine = storageEngine;
+    }
+
     public void Insert<T>(T obj)
     {
-      throw new NotImplementedException();
+      
     }
 
     public void Update<T>(Func<T> condition, T obj)
@@ -35,6 +43,18 @@ namespace coder925.tiqk
     public T Get<T>(Func<T> condition)
     {
       throw new NotImplementedException();
+    }
+
+    public IKeyValueStore StorageEngine
+    {
+      get
+      {
+        throw new NotImplementedException();
+      }
+      set
+      {
+        throw new NotImplementedException();
+      }
     }
   }
 }
