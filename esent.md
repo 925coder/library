@@ -7,6 +7,7 @@ An instance is akin to a sql server instance, i.e. its a 'instance' of the datab
 An instance is also the unit of recoverability for the database engine. It manages all the recovery logs and checkpoint file associated with the databases running within the instance. 
 
 The typical sequence of operation to create and initialise an Instance are -
+
 1. Create Instance.
 2. Set system parameters.
 3. Start the instance by calling JetInit
