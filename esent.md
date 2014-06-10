@@ -11,6 +11,7 @@ The typical sequence of operation to create and initialise an Instance are -
 1. Create Instance.
 2. Set system parameters.
 3. Start the instance by calling JetInit
+4. Terminate an instance by calling JetTerm
 
 ## Sessions
 
