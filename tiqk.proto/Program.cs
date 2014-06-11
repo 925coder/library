@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Isam.Esent.Interop;
 using System.IO;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace coder925.tiqk.proto
 {
@@ -34,11 +36,11 @@ namespace coder925.tiqk.proto
         instruments[i] = new Instrument {Name = names[i] , InstrumentId=i};
       
       for (int i = 0; i < numOrders; i++)
-			{
+      {
         var instrument = instruments[r.Next() % numInstruments];
         var order = new Order { Quantity = i * 1000 , Instrument = instrument };
         orders[i] = order;
-			}
+      }
 
       return orders;
     }
@@ -49,12 +51,22 @@ namespace coder925.tiqk.proto
   {
     static void Main(string[] args)
     {
+
       Console.Write("Enter db name : ");
       var db = Console.ReadLine();
-
       CreateDatabase(db);
-      var orders = Order.MakeOrders(1000000);
+      int numOrders = 1000000;
 
+      Stopwatch sw = new Stopwatch();
+      sw.Start();
+      var orders = Order.MakeOrders(numOrders);
+      var serialized = new string[numOrders];
+      for (int i = 0; i < numOrders; i++)
+      {
+        serialized[i] = JsonConvert.SerializeObject(orders[i]);
+      }
+      sw.Stop();
+      Console.WriteLine("Time taken = " + sw.ElapsedMilliseconds); 
       Console.ReadKey();
     }
 
