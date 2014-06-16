@@ -36,6 +36,10 @@
     <Reference Include="Esent.Interop">
       <HintPath>..\packages\ManagedEsent.1.9.0.1\lib\net40\Esent.Interop.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,11 +51,18 @@
   <ItemGroup>
     <Compile Include="Db.cs" />
     <Compile Include="EsentDb.cs" />
+    <Compile Include="EsentExtentions.cs" />
     <Compile Include="IKeyValueStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\library.csproj">
+      <Project>{11b6046f-6a52-41bb-8249-941cadd47eca}</Project>
+      <Name>library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

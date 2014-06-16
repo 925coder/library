@@ -54,37 +54,24 @@ namespace coder925.tiqk.proto
 
       Console.Write("Enter db name : ");
       var db = Console.ReadLine();
-      CreateDatabase(db);
-      int numOrders = 1000000;
+      //CreateDatabase(db);
+      int numOrders = 10;
 
       Stopwatch sw = new Stopwatch();
       sw.Start();
       var orders = Order.MakeOrders(numOrders);
       var serialized = new string[numOrders];
+      var essentdb = new EsentDb(db);
       for (int i = 0; i < numOrders; i++)
       {
-        serialized[i] = JsonConvert.SerializeObject(orders[i]);
+        essentdb.Store(orders[i].OrderId, orders[i]);
       }
+      essentdb.Dispose();
+
       sw.Stop();
       Console.WriteLine("Time taken = " + sw.ElapsedMilliseconds); 
       Console.ReadKey();
     }
 
-    private static void CreateDatabase(string db)
-    {
-      // create an instance of the database engine
-      using (var instance = new Instance(db))
-      {
-        var parameters = instance.Parameters;
-        parameters.CircularLog = true;
-
-        instance.Init();
-        using (var session = new Session(instance))
-        {
-          JET_DBID dbid;
-          Api.JetCreateDatabase(session, db, null, out dbid, CreateDatabaseGrbit.OverwriteExisting);
-        }
-      }
-    }
   }
 }
